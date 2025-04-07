@@ -4,7 +4,7 @@ import aiofiles
 from fastapi import FastAPI, File, UploadFile
 
 from .config import UPLOAD_DIR
-from .worker import process_ocr_task
+from .worker import celery, process_ocr_task
 
 app = FastAPI()
 
@@ -24,10 +24,13 @@ async def upload_file(file: UploadFile = File(...)):
 
 @app.get("/result/{task_id}")
 def get_result(task_id: str):
-    from celery.result import AsyncResult
+    print("here")
 
-    task_result = AsyncResult(task_id)
+    print("here2")
 
+    task_result = celery.AsyncResult(task_id)
+    print("here3")
+    print(task_result.state)
     if task_result.state == "PENDING":
         return {"status": "pending"}
 

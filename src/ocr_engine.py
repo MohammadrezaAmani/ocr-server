@@ -36,14 +36,20 @@ def extract_images_from_pdf(pdf_path: str):
     return images
 
 
+def find_text_in_image(image):
+    result = reader.readtext(image, detail=1, workers=4)
+    print(result)
+    return serialize(result)
+
+
 def run_ocr(file_path: str):
     if is_image_file(file_path):
-        result = reader.readtext(file_path, detail=1)
+        result = reader.readtext(file_path, detail=1, workers=4)
         return {"type": "image", "pages": [{"page": 1, "text": serialize(result)}]}
 
     if file_path.lower().endswith(".pdf"):
         images = extract_images_from_pdf(file_path)
-        results = [reader.readtext(img, detail=1) for img in images]
+        results = [find_text_in_image(img) for img in images]
         return {
             "type": "pdf",
             "pages": [
