@@ -1,11 +1,11 @@
 
-## OCR Server
+# OCR Server
 
 A lightweight and async OCR server powered by **FastAPI**, **Celery**, **EasyOCR**, and **Redis**. Supports image and PDF OCR using CPU.
 
 ---
 
-### Features
+## Features
 
 - OCR for images (`.jpg`, `.png`, etc.) and PDFs
 - Async task processing with **Celery**
@@ -15,7 +15,7 @@ A lightweight and async OCR server powered by **FastAPI**, **Celery**, **EasyOCR
 
 ---
 
-### 📁 Project Structure
+## 📁 Project Structure
 
 ```bash
 ocr-server/
@@ -33,13 +33,13 @@ ocr-server/
 
 ---
 
-### ⚙️ Requirements
+## ⚙️ Requirements
 
 - Docker & Docker Compose
 
 ---
 
-### 🐳 Run with Docker
+## 🐳 Run with Docker
 
 ```bash
 docker-compose up --build
@@ -47,7 +47,7 @@ docker-compose up --build
 
 ---
 
-### 📡 API Endpoints
+## 📡 API Endpoints
 
 **Submit OCR task**
 
@@ -64,7 +64,7 @@ GET /result/{task_id}
 
 ---
 
-### ✅ Example Response
+## ✅ Example Response
 
 ```json
 {
@@ -89,7 +89,7 @@ GET /result/{task_id}
 
 ---
 
-### 🧪 Test with `curl`
+## 🧪 Test with `curl`
 
 ```bash
 curl -F "file=@sample.pdf" http://localhost:8000/ocr
